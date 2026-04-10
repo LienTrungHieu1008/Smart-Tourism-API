@@ -1,17 +1,9 @@
-"""
-File kiểm thử API bằng thư viện requests.
-Chạy file này khi server đang hoạt động (uvicorn main:app --reload).
-
-Sử dụng: python test_api.py
-"""
-
 import requests
 import json
 import sys
 
 BASE_URL = "http://127.0.0.1:8000"
 
-# Màu sắc cho terminal output
 GREEN = "\033[92m"
 RED = "\033[91m"
 YELLOW = "\033[93m"
@@ -47,10 +39,6 @@ def print_result(test_name, success, response=None, error=None):
         except Exception:
             print(f"    Response: {response.text[:200]}")
 
-
-# ============================================================
-# TEST 1: GET /health - Kiểm tra sức khỏe server
-# ============================================================
 print_header("TEST 1: GET /health - Kiểm tra sức khỏe server")
 
 try:
@@ -67,9 +55,6 @@ except Exception as e:
     print_result("Health check trả về status healthy", False, error=str(e))
 
 
-# ============================================================
-# TEST 2: GET / - Kiểm tra trang chủ
-# ============================================================
 print_header("TEST 2: GET / - Kiểm tra trang chủ (static HTML)")
 
 try:
@@ -80,9 +65,6 @@ except Exception as e:
     print_result("Trang chủ trả về HTML", False, error=str(e))
 
 
-# ============================================================
-# TEST 3: POST /suggest - Tìm kiếm thành công
-# ============================================================
 print_header("TEST 3: POST /suggest - Tìm kiếm địa điểm biển")
 
 try:
@@ -101,9 +83,6 @@ except Exception as e:
     print_result("Tìm kiếm 'bãi biển đẹp' trả về kết quả", False, error=str(e))
 
 
-# ============================================================
-# TEST 4: POST /suggest - Tìm kiếm với query khác
-# ============================================================
 print_header("TEST 4: POST /suggest - Tìm kiếm 'chùa cổ kính'")
 
 try:
@@ -120,9 +99,6 @@ except Exception as e:
     print_result("Tìm kiếm 'chùa cổ kính linh thiêng' thành công", False, error=str(e))
 
 
-# ============================================================
-# TEST 5: POST /suggest - Query rỗng (lỗi 422 validation)
-# ============================================================
 print_header("TEST 5: POST /suggest - Query rỗng (Validation Error)")
 
 try:
@@ -135,9 +111,6 @@ except Exception as e:
     print_result("Query rỗng trả về lỗi 422", False, error=str(e))
 
 
-# ============================================================
-# TEST 6: POST /suggest - Query chỉ có khoảng trắng (lỗi 400)
-# ============================================================
 print_header("TEST 6: POST /suggest - Query chỉ có khoảng trắng (lỗi 400)")
 
 try:
@@ -150,9 +123,6 @@ except Exception as e:
     print_result("Query khoảng trắng trả về lỗi 400", False, error=str(e))
 
 
-# ============================================================
-# TEST 7: POST /suggest - top_k không hợp lệ (lỗi 422)
-# ============================================================
 print_header("TEST 7: POST /suggest - top_k = 0 (Validation Error)")
 
 try:
@@ -165,9 +135,6 @@ except Exception as e:
     print_result("top_k=0 trả về lỗi 422", False, error=str(e))
 
 
-# ============================================================
-# TEST 8: POST /suggest - top_k vượt giới hạn (lỗi 422)
-# ============================================================
 print_header("TEST 8: POST /suggest - top_k = 100 (vượt le=10)")
 
 try:
@@ -180,9 +147,6 @@ except Exception as e:
     print_result("top_k=100 trả về lỗi 422", False, error=str(e))
 
 
-# ============================================================
-# TEST 9: POST /suggest - Thiếu body (lỗi 422)
-# ============================================================
 print_header("TEST 9: POST /suggest - Thiếu request body")
 
 try:
@@ -193,9 +157,6 @@ except Exception as e:
     print_result("Thiếu body trả về lỗi 422", False, error=str(e))
 
 
-# ============================================================
-# TEST 10: POST /generate - Sinh lại dữ liệu
-# ============================================================
 print_header("TEST 10: POST /generate - Sinh lại dữ liệu")
 
 try:
@@ -211,9 +172,6 @@ except Exception as e:
     print_result("Generate trả về 1000 địa điểm", False, error=str(e))
 
 
-# ============================================================
-# TEST 11: GET /health sau khi generate - Kiểm tra dữ liệu mới
-# ============================================================
 print_header("TEST 11: GET /health sau generate - Xác nhận 1000 địa điểm")
 
 try:
@@ -228,9 +186,6 @@ except Exception as e:
     print_result("Health check xác nhận 1000 địa điểm", False, error=str(e))
 
 
-# ============================================================
-# TỔNG KẾT
-# ============================================================
 print(f"\n{BOLD}{CYAN}{'='*60}")
 print(f"  TỔNG KẾT KẾT QUẢ KIỂM THỬ")
 print(f"{'='*60}{RESET}")
@@ -242,5 +197,5 @@ print(f"{CYAN}{'='*60}{RESET}\n")
 if failed > 0:
     sys.exit(1)
 else:
-    print(f"  {GREEN}{BOLD}🎉 Tất cả test cases đều PASS!{RESET}\n")
+    print(f"  {GREEN}{BOLD} Tất cả test cases đều PASS!{RESET}\n")
     sys.exit(0)

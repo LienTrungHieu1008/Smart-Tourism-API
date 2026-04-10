@@ -34,7 +34,6 @@ descriptions = [dest["description"] for dest in tourist_destinations]
 
 print("Đang mã hóa dữ liệu văn bản thành vectors embedding...")
 # Mã hóa (Encode) toàn bộ mô tả của các địa điểm thành embeddings (vector)
-# Việc này được thực hiện một lần khi tải server để tối ưu thời gian trả về API
 destination_embeddings = model.encode(descriptions, convert_to_tensor=True)
 
 # 4. API Endpoints
@@ -44,19 +43,18 @@ def read_root():
 
 @app.post("/suggest", response_model=list[DestinationResponse])
 def suggest_destinations(request: SearchRequest):
-    # Kiểm tra dữ liệu đầu vào. Trả về HTTP 400 nếu rỗng hoặc chỉ có khoảng trắng.
+    # Trả về HTTP 400 nếu rỗng hoặc chỉ có khoảng trắng.
     if not request.query.strip():
         raise HTTPException(status_code=400, detail="Câu truy vấn không hợp lệ (trống hoặc chỉ chứa khoảng trắng).")
     
     try:
-        # Bước 1: Mã hóa câu truy vấn của người dùng thành vector tensor
+        # Bước 1: Mã hóa câu truy vấn của người dùng thành vector 
         query_embedding = model.encode(request.query, convert_to_tensor=True)
         
         # Bước 2: Tính toán độ tương đồng (Cosine Similarity) giữa vector truy vấn và vectors của điểm đến
         cosine_scores = util.cos_sim(query_embedding, destination_embeddings)[0]
         
         # Bước 3: Tìm top_k địa điểm có độ tương đồng cao nhất
-        # Sử dụng torch.topk để lấy vị trí (indices) và điểm số (values)
         k = min(request.top_k, len(tourist_destinations))
         top_results = torch.topk(cosine_scores, k=k)
         
