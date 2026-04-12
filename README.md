@@ -251,9 +251,8 @@ for dest in resp.json():
 
 ## Video Demo
 
-[![Demo API Smart Tourism](https://img.youtube.com/vi/YOUTUBE_ID_CUA_BAN/hqdefault.jpg)](https://youtu.be/YOUTUBE_ID_CUA_BAN)
+[![Demo API Smart Tourism](https://img.youtube.com/vi/QmbwUO5al_4/hqdefault.jpg)](https://youtu.be/QmbwUO5al_4)
 > 💡 *Nhấn vào ảnh trên để xem video Demo trên YouTube.*
-> *(Lưu ý: Thay chữ `YOUTUBE_ID_CUA_BAN` bằng ID video của bạn. Ví dụ link là `https://youtu.be/dQw4w9WgXcQ` thì ID là `dQw4w9WgXcQ`)*
 
 ---
 
