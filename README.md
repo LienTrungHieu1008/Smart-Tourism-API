@@ -232,7 +232,7 @@ print(resp.json())
 
 ## Video Demo
 
-> [Link video demo](<Điền link video demo tại đây>)
+<video src="./demo.mp4" controls="controls" width="100%"></video>
 
 ---
 
