@@ -251,7 +251,7 @@ for dest in resp.json():
 
 ## Video Demo
 
-<video src="https://raw.githubusercontent.com/LienTrungHieu1008/Smart-Tourism-API/main/Demo.mp4" controls="controls" width="100%"></video>
+<video src="https://github.com/LienTrungHieu1008/Smart-Tourism-API/blob/main/Demo.mp4" controls="controls" width="100%"></video>
 
 ---
 
