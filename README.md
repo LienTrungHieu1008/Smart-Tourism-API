@@ -251,7 +251,9 @@ for dest in resp.json():
 
 ## Video Demo
 
-<video src="https://github.com/LienTrungHieu1008/Smart-Tourism-API/blob/main/Demo.mp4" controls="controls" width="100%"></video>
+[![Demo API Smart Tourism](https://img.youtube.com/vi/YOUTUBE_ID_CUA_BAN/hqdefault.jpg)](https://youtu.be/YOUTUBE_ID_CUA_BAN)
+> 💡 *Nhấn vào ảnh trên để xem video Demo trên YouTube.*
+> *(Lưu ý: Thay chữ `YOUTUBE_ID_CUA_BAN` bằng ID video của bạn. Ví dụ link là `https://youtu.be/dQw4w9WgXcQ` thì ID là `dQw4w9WgXcQ`)*
 
 ---
 
